@@ -84,3 +84,4 @@ production:
   database: wasurenzou_production
   username: wasurenzou
   password: <%= ENV['WASURENZOU_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
