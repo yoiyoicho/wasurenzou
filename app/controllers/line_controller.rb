@@ -20,7 +20,6 @@ class LineController < ApplicationController
           line_user_id = event['source']['userId']
           @user = User.find_or_create_by(line_user_id: line_user_id)
 
-          byebug
           case @user.mode
           when 0 #待機モード
             case event.message['text']
