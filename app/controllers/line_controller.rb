@@ -104,6 +104,7 @@ class LineController < ApplicationController
         end
       end
     end
+    head :ok
   end
 
   private
