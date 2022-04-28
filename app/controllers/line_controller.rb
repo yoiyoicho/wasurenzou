@@ -1,8 +1,5 @@
 class LineController < ApplicationController
-  # 開発環境では外部からPOSTリクエストを送ったときにActionController::InvalidAuthenticityTokenエラーが出るため
-  # CSRF対策をこのコントローラだけ無効にする
-  # protect_from_forgery
-
+  protect_from_forgery
   require 'line/bot'
 
   def callback
