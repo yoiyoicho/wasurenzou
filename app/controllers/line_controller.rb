@@ -85,11 +85,15 @@ class LineController < ApplicationController
             @user.mode = 0
           else #回答モード
             answer_topic = Topic.find(@user.mode - 40)
-            if event.message['text'] == answer_topic.content
-              reply = "そうじゃったそうじゃった。「#{answer_topic.content}」という意味じゃったな。若者の記憶力にはかなわんぞい"
+            if answer_topic.present?
+              if event.message['text'] == answer_topic.content
+                reply = "そうじゃったそうじゃった。「#{answer_topic.content}」という意味じゃったな。若者の記憶力にはかなわんぞい"
+              else
+                reply = "はて？　そんな意味じゃったかいのう？　いかん、「#{answer_topic.title}」のことはすっかり忘れてしまったわい…"
+                answer_topic.destroy
+              end
             else
-              reply = "はて？　そんな意味じゃったかいのう？　いかん、「#{answer_topic.title}」のことはすっかり忘れてしまったわい…"
-              answer_topic.destroy
+              reply = 'エラーじゃ'
             end
             @user.mode = 0
           end
